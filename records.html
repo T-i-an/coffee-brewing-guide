@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冲泡记录 - 手冲咖啡指南</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="landing-page">
+        <!-- 顶部导航栏 -->
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <i class="fas fa-coffee"></i>
+                <span>手冲咖啡指南</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="preheat.html">温杯指南</a>
+                <a href="brewing.html">冲泡指南</a>
+                <a href="records.html">冲泡记录</a>
+                <a href="about.html">关于我们</a>
+            </div>
+        </nav>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <div class="title-section">
+                <h1>冲泡记录</h1>
+                <p class="subtitle">记录你的咖啡冲泡历程</p>
+            </div>
+
+            <!-- 新增记录表单 -->
+            <div class="new-record-form">
+                <h2>新增冲泡记录</h2>
+                <form id="record-form">
+                    <div class="form-grid">
+                        <div class="form-item">
+                            <label for="coffee-type">咖啡豆类型</label>
+                            <input type="text" id="coffee-type" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="coffee-weight">咖啡粉重量 (克)</label>
+                            <input type="number" id="coffee-weight" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="water-weight">注水量 (克)</label>
+                            <input type="number" id="water-weight" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="water-temp">水温 (°C)</label>
+                            <input type="number" id="water-temp" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="brew-time">冲泡时间 (秒)</label>
+                            <input type="number" id="brew-time" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="grind-size">研磨度</label>
+                            <select id="grind-size" required>
+                                <option value="fine">细</option>
+                                <option value="medium-fine">中细</option>
+                                <option value="medium">中</option>
+                                <option value="medium-coarse">中粗</option>
+                                <option value="coarse">粗</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-item full-width">
+                        <label for="notes">冲泡笔记</label>
+                        <textarea id="notes" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="save-record">
+                        <i class="fas fa-save"></i>
+                        <span>保存记录</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- 记录列表 -->
+            <div class="brewing-records">
+                <h2>历史记录</h2>
+                <div class="records-list" id="records-list">
+                    <!-- 记录将通过JavaScript动态添加 -->
+                </div>
+            </div>
+
+            <!-- 导航按钮 -->
+            <div class="nav-buttons">
+                <a href="brewing.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>上一步：冲泡指南</span>
+                </a>
+                <a href="index.html" class="nav-btn">
+                    <span>返回首页</span>
+                    <i class="fas fa-home"></i>
+                </a>
+            </div>
+        </main>
+
+        <!-- 底部信息 -->
+        <footer class="main-footer">
+            <p>© 2024 手冲咖啡指南 | 探索咖啡的无限可能</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

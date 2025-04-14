@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冲泡指南 - 手冲咖啡指南</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="landing-page">
+        <!-- 顶部导航栏 -->
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <i class="fas fa-coffee"></i>
+                <span>手冲咖啡指南</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="preheat.html">温杯指南</a>
+                <a href="brewing.html">冲泡指南</a>
+                <a href="records.html">冲泡记录</a>
+                <a href="about.html">关于我们</a>
+            </div>
+        </nav>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <div class="title-section">
+                <h1>冲泡指南</h1>
+                <p class="subtitle">掌握手冲咖啡的精髓</p>
+            </div>
+
+            <!-- 冲泡步骤区 -->
+            <div class="brewing-steps">
+                <div class="step-container">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>准备咖啡粉</h3>
+                        <p>使用15克咖啡粉，研磨度中等偏细</p>
+                        <div class="step-image">
+                            <i class="fas fa-weight-hanging"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>第一次注水</h3>
+                        <p>注入30克热水，等待30秒</p>
+                        <div class="step-image">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>第二次注水</h3>
+                        <p>缓慢注入剩余热水，总水量250克</p>
+                        <div class="step-image">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>等待完成</h3>
+                        <p>等待咖啡完全滴滤，约2-3分钟</p>
+                        <div class="step-image">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 冲泡参数设置 -->
+            <div class="brewing-params">
+                <h2>冲泡参数设置</h2>
+                <div class="param-grid">
+                    <div class="param-item">
+                        <label for="coffee-weight">咖啡粉重量 (克)</label>
+                        <input type="number" id="coffee-weight" value="15" min="10" max="30">
+                    </div>
+                    <div class="param-item">
+                        <label for="water-weight">注水量 (克)</label>
+                        <input type="number" id="water-weight" value="250" min="200" max="400">
+                    </div>
+                    <div class="param-item">
+                        <label for="water-temp">水温 (°C)</label>
+                        <input type="number" id="water-temp" value="92" min="85" max="96">
+                    </div>
+                    <div class="param-item">
+                        <label for="brew-time">冲泡时间 (秒)</label>
+                        <input type="number" id="brew-time" value="180" min="120" max="240">
+                    </div>
+                </div>
+                <button class="save-params" onclick="saveBrewingParams()">
+                    <i class="fas fa-save"></i>
+                    <span>保存参数</span>
+                </button>
+            </div>
+
+            <!-- 导航按钮 -->
+            <div class="nav-buttons">
+                <a href="preheat.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>上一步：温杯指南</span>
+                </a>
+                <a href="records.html" class="nav-btn">
+                    <span>下一步：冲泡记录</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </main>
+
+        <!-- 底部信息 -->
+        <footer class="main-footer">
+            <p>© 2024 手冲咖啡指南 | 探索咖啡的无限可能</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

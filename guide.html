@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手冲咖啡指南</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="guide-page">
+        <!-- 顶部导航栏 -->
+        <nav class="guide-nav">
+            <div class="nav-logo">
+                <i class="fas fa-coffee"></i>
+                <span>手冲咖啡指南</span>
+            </div>
+            <div class="nav-links">
+                <a href="#preheat" class="nav-link active">
+                    <i class="fas fa-temperature-high"></i>
+                    <span>温杯</span>
+                </a>
+                <a href="#grind" class="nav-link">
+                    <i class="fas fa-mortar-pestle"></i>
+                    <span>磨豆</span>
+                </a>
+                <a href="#first-pour" class="nav-link">
+                    <i class="fas fa-water"></i>
+                    <span>第一次注水</span>
+                </a>
+                <a href="#second-pour" class="nav-link">
+                    <i class="fas fa-water"></i>
+                    <span>第二次注水</span>
+                </a>
+                <a href="#third-pour" class="nav-link">
+                    <i class="fas fa-water"></i>
+                    <span>第三次注水</span>
+                </a>
+                <a href="#serve" class="nav-link">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>出品</span>
+                </a>
+            </div>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>返回首页</span>
+            </a>
+        </nav>
+
+        <!-- 主要内容区 -->
+        <main class="guide-content">
+            <!-- 温杯部分 -->
+            <section id="preheat" class="guide-section active">
+                <h2>温杯指南</h2>
+                <div class="section-content">
+                    <div class="step-container">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>准备滤纸</h3>
+                            <p>将滤纸折叠好放入滤杯中，确保贴合。</p>
+                            <div class="step-image">
+                                <img src="images/preheat-paper-prep.jpg" alt="准备滤纸">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-container">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>冲洗滤纸</h3>
+                            <p>用热水冲洗滤纸，去除纸味并预热器具。</p>
+                            <div class="step-image">
+                                <img src="images/preheat-paper-rinse.jpg" alt="冲洗滤纸">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-container">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>预热器具</h3>
+                            <p>将热水倒入滤杯，预热整个冲泡系统。</p>
+                            <div class="step-image">
+                                <img src="images/preheat-brewer.jpg" alt="预热器具">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <a href="#grind" class="next-step-button">
+                            <span>下一步：磨豆</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 磨豆部分 -->
+            <section id="grind" class="guide-section">
+                <h2>磨豆指南</h2>
+                <div class="section-content">
+                    <div class="left-column">
+                        <div class="step-container">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>选择咖啡豆</h3>
+                                <div class="coffee-types">
+                                    <h4>四种主要咖啡豆</h4>
+                                    <div class="coffee-grid">
+                                        <div class="coffee-card">
+                                            <div class="coffee-name">Arabica</div>
+                                            <div class="coffee-image">
+                                                <img src="images/arabica-bean.png" alt="阿拉比卡">
+                                            </div>
+                                            <div class="coffee-title">阿拉比卡</div>
+                                            <div class="coffee-desc">
+                                                <p>最常见的咖啡豆类型</p>
+                                                <p>起源于埃塞俄比亚</p>
+                                                <p>光滑、甜味和更浓郁的香气</p>
+                                            </div>
+                                        </div>
+                                        <div class="coffee-card">
+                                            <div class="coffee-name">Robusta</div>
+                                            <div class="coffee-image">
+                                                <img src="images/robusta-bean.png" alt="罗布斯塔">
+                                            </div>
+                                            <div class="coffee-title">罗布斯塔</div>
+                                            <div class="coffee-desc">
+                                                <p>第二常见咖啡豆类型</p>
+                                                <p>源自非洲</p>
+                                                <p>泥土味、苦味、坚果</p>
+                                            </div>
+                                        </div>
+                                        <div class="coffee-card">
+                                            <div class="coffee-name">Liberica</div>
+                                            <div class="coffee-image">
+                                                <img src="images/liberica-bean.png" alt="利比里卡">
+                                            </div>
+                                            <div class="coffee-title">利比里卡</div>
+                                            <div class="coffee-desc">
+                                                <p>最稀有的咖啡豆</p>
+                                                <p>起源于西非</p>
+                                                <p>花香、果香、烟熏木风味</p>
+                                            </div>
+                                        </div>
+                                        <div class="coffee-card">
+                                            <div class="coffee-name">Excelsa</div>
+                                            <div class="coffee-image">
+                                                <img src="images/excelsa-bean.png" alt="埃塞尔萨">
+                                            </div>
+                                            <div class="coffee-title">埃塞尔萨</div>
+                                            <div class="coffee-desc">
+                                                <p>曾经是独独的咖啡豆类</p>
+                                                <p>主要生长在东南亚</p>
+                                                <p>酸味和果味</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-container">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>称量咖啡豆</h3>
+                                <p>使用电子秤称取15克咖啡豆。</p>
+                                <div class="step-image">
+                                    <img src="images/coffee-scale.JPG" alt="称量咖啡豆">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-column">
+                        <div class="step-container">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>调整研磨度</h3>
+                                <p>根据咖啡豆类型调整研磨度。</p>
+                                <div class="step-image">
+                                    <img src="images/grind-settings.JPG" alt="调整研磨度">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-container">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>研磨咖啡豆</h3>
+                                <div class="grinder-section">
+                                    <div class="grinder-item">
+                                        <div class="step-image">
+                                            <img src="images/hand-grinder.JPG" alt="手摇磨豆机">
+                                        </div>
+                                        <p class="grinder-desc">手摇磨豆机：研磨过程更慢但口感细腻，适合追求完美风味的咖啡爱好者</p>
+                                    </div>
+                                    <div class="grinder-item">
+                                        <div class="step-image">
+                                            <img src="images/electric-grinder.jpg" alt="电动磨豆机">
+                                        </div>
+                                        <p class="grinder-desc">电动磨豆机：效率更高且研磨均匀，适合日常快速制作咖啡</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-container">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>清洁磨豆机</h3>
+                                <p>使用专用刷子清洁磨豆机。</p>
+                                <div class="step-image">
+                                    <img src="images/grinder-brush.jpg" alt="清洁磨豆机">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-actions">
+                    <a href="#preheat" class="prev-step-button">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>上一步：温杯</span>
+                    </a>
+                    <a href="#first-pour" class="next-step-button">
+                        <span>下一步：第一次注水</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 第一次注水部分 -->
+            <section id="first-pour" class="guide-section">
+                <h2>第一次注水指南</h2>
+                <div class="pour-content">
+                    <div class="pour-grid">
+                        <div class="pour-item">
+                            <div class="step-number">1</div>
+                            <div class="step-image">
+                                <img src="images/prepare-pour.jpg" alt="准备注水">
+                            </div>
+                            <div class="step-content">
+                                <h3>准备注水</h3>
+                                <p>将研磨好的咖啡粉倒入滤杯中，轻轻拍平，确保粉层平整。</p>
+                            </div>
+                        </div>
+                        <div class="pour-item">
+                            <div class="step-number">2</div>
+                            <div class="step-image">
+                                <img src="images/first-pour.jpg" alt="第一次注水">
+                            </div>
+                            <div class="step-content">
+                                <h3>第一次注水</h3>
+                                <p>注入30克热水（水温92-96℃），等待30秒让咖啡粉充分膨胀。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pour-explanation">
+                        <h4>为什么需要第一次注水？</h4>
+                        <p>第一次注水又称为"预浸"或"焖蒸"阶段，这个步骤的主要作用是：</p>
+                        <ul>
+                            <li>让咖啡粉充分吸水膨胀，释放二氧化碳</li>
+                            <li>确保咖啡粉均匀受热，为后续萃取做准备</li>
+                            <li>通过预浸润，提高咖啡的甜度和香气</li>
+                            <li>防止后续注水时形成咖啡粉团，影响萃取均匀性</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-actions">
+                        <a href="#grind" class="prev-step-button">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>上一步：磨豆</span>
+                        </a>
+                        <a href="#second-pour" class="next-step-button">
+                            <span>下一步：第二次注水</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第二次注水部分 -->
+            <section id="second-pour" class="guide-section">
+                <h2>第二次注水指南</h2>
+                <div class="section-content">
+                    <div class="step-container">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>第二次注水</h3>
+                            <p>缓慢注入剩余热水，总水量250克。</p>
+                            <div class="step-image">
+                                <img src="images/second-pour.jpg" alt="第二次注水">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pour-explanation">
+                        <h4>为什么需要第二次注水？</h4>
+                        <p>第二次注水是咖啡萃取的主要阶段，这个步骤的重要性在于：</p>
+                        <ul>
+                            <li>通过缓慢注水，确保水流均匀接触所有咖啡粉</li>
+                            <li>控制水温和注水速度，提取咖啡中的理想风味</li>
+                            <li>形成适当的萃取时间，避免过度或不足萃取</li>
+                            <li>维持适当的咖啡粉层厚度，保证萃取均匀性</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-actions">
+                        <a href="#first-pour" class="prev-step-button">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>上一步：第一次注水</span>
+                        </a>
+                        <a href="#third-pour" class="next-step-button">
+                            <span>下一步：第三次注水</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第三次注水部分 -->
+            <section id="third-pour" class="guide-section">
+                <h2>第三次注水指南</h2>
+                <div class="section-content">
+                    <div class="step-container">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>第三次注水</h3>
+                            <p>继续缓慢注入剩余热水，总水量达到350克。</p>
+                            <div class="step-image">
+                                <img src="images/third-pour.jpg" alt="第三次注水">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pour-explanation-grid">
+                        <div class="pour-explanation left-explanation">
+                            <h4>为什么需要第三次注水？</h4>
+                            <p>第三次注水是咖啡萃取的收尾阶段，具有以下重要意义：</p>
+                            <ul>
+                                <li>确保咖啡粉完全萃取，避免浪费咖啡的风味</li>
+                                <li>平衡咖啡的整体口感，使其更加圆润</li>
+                                <li>调整咖啡的浓度，达到理想的饮用浓度</li>
+                                <li>补充水量，获得足够的成品咖啡量</li>
+                            </ul>
+                        </div>
+
+                        <div class="pour-explanation right-explanation">
+                            <h4>第三次注水要点与误区</h4>
+                            <ul>
+                                <li>注水速度要保持稳定，不要过快导致咖啡粉层塌陷</li>
+                                <li>水流要均匀分布，避免局部过度萃取</li>
+                                <li>注意观察滤纸边缘，防止咖啡粉上浮</li>
+                                <li>误区：认为最后一次注水可以快速完成，这会影响咖啡的口感</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step-actions">
+                        <a href="#second-pour" class="prev-step-button">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>上一步：第二次注水</span>
+                        </a>
+                        <a href="#serve" class="next-step-button">
+                            <span>下一步：出品</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 出品部分 -->
+            <section id="serve" class="guide-section">
+                <h2>出品指南</h2>
+                <div class="section-content">
+                    <div class="step-container">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>咖啡出品</h3>
+                            <p>等待咖啡完全滴滤完成后，将咖啡倒入预热好的杯中。让咖啡稍微冷却至适宜温度（约65-70℃），便可以开始品尝您亲手冲制的咖啡了。</p>
+                            <div class="serve-images">
+                                <div class="serve-image">
+                                    <img src="images/pour-coffee.jpg" alt="倒出咖啡">
+                                </div>
+                                <div class="serve-image">
+                                    <img src="images/enjoy-coffee.jpg" alt="享用咖啡">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-actions">
+                        <a href="#third-pour" class="prev-step-button">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>上一步：第三次注水</span>
+                        </a>
+                        <a href="index.html" class="next-step-button">
+                            <span>返回首页</span>
+                            <i class="fas fa-home"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 智能助手聊天窗口 -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-button" id="chatButton">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-header">
+                <h3>咖啡智能助手</h3>
+                <button class="close-chat" id="closeChat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-content">
+                        您好！我是您的咖啡助手。有任何关于咖啡冲泡的问题，都可以问我哦！
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <textarea id="userInput" placeholder="请输入您的问题..." rows="1"></textarea>
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html> 

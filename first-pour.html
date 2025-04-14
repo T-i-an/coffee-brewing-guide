@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一次注水指南</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="guide-page">
+        <!-- 顶部导航栏 -->
+        <nav class="guide-nav">
+            <div class="nav-logo">
+                <i class="fas fa-coffee"></i>
+                <span>手冲咖啡指南</span>
+            </div>
+            <div class="nav-links">
+                <a href="guide.html#preheat" class="nav-link">
+                    <i class="fas fa-temperature-high"></i>
+                    <span>温杯</span>
+                </a>
+                <a href="guide.html#grind" class="nav-link">
+                    <i class="fas fa-mortar-pestle"></i>
+                    <span>磨豆</span>
+                </a>
+                <a href="#first-pour" class="nav-link active">
+                    <i class="fas fa-water"></i>
+                    <span>第一次注水</span>
+                </a>
+                <a href="#second-pour" class="nav-link">
+                    <i class="fas fa-water"></i>
+                    <span>第二次注水</span>
+                </a>
+                <a href="#third-pour" class="nav-link">
+                    <i class="fas fa-water"></i>
+                    <span>第三次注水</span>
+                </a>
+                <a href="#serve" class="nav-link">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>出品</span>
+                </a>
+            </div>
+            <a href="guide.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                <span>返回上一步</span>
+            </a>
+        </nav>
+
+        <!-- 主要内容区 -->
+        <main class="guide-content">
+            <section id="first-pour" class="guide-section active">
+                <h2>第一次注水指南</h2>
+                <div class="section-content">
+                    <div class="step-container">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>准备注水</h3>
+                            <p>将研磨好的咖啡粉倒入滤杯中，轻轻拍平。</p>
+                            <div class="step-image">
+                                <img src="images/prepare-pour.jpg" alt="准备注水">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-container">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>第一次注水</h3>
+                            <p>注入30克热水，等待30秒让咖啡粉充分膨胀。</p>
+                            <div class="step-image">
+                                <img src="images/first-pour.jpg" alt="第一次注水">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <a href="guide.html#grind" class="prev-step-button">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>上一步：磨豆</span>
+                        </a>
+                        <a href="#second-pour" class="next-step-button">
+                            <span>下一步：第二次注水</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
