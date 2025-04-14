@@ -60,12 +60,15 @@ async function sendMessageToBot() {
                     }
                 ],
                 temperature: 0.7,
-                max_tokens: 1000
+                max_tokens: 2000,
+                stream: false
             })
         });
 
         if (!response.ok) {
-            throw new Error('API请求失败');
+            const errorData = await response.json();
+            console.error('API Error:', errorData);
+            throw new Error(`API请求失败: ${errorData.error?.message || '未知错误'}`);
         }
 
         const data = await response.json();
@@ -74,7 +77,7 @@ async function sendMessageToBot() {
         loadingMessage.remove();
         
         // 添加机器人回复
-        if (data.choices && data.choices[0]) {
+        if (data.choices && data.choices[0] && data.choices[0].message) {
             addMessage('bot', data.choices[0].message.content);
         } else {
             throw new Error('无效的API响应');
@@ -82,7 +85,7 @@ async function sendMessageToBot() {
     } catch (error) {
         console.error('Error:', error);
         loadingMessage.remove();
-        addMessage('bot', '抱歉，我暂时无法回答您的问题。请稍后再试或联系客服。');
+        addMessage('bot', `抱歉，我暂时无法回答您的问题。错误信息：${error.message}`);
     }
 }
 
