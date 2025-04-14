@@ -10,138 +10,190 @@ let brewingRecords = JSON.parse(localStorage.getItem('brewingRecords')) || [];
 
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
-    // 初始化Canvas
-    canvas = document.getElementById('coffee-canvas');
-    ctx = canvas.getContext('2d');
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // 初始化参数控制
-    initParamControls();
-    
-    // 初始化工具
-    initTools();
-    
-    // 显示第一步
-    showStep(1);
-
-    // 在页面加载时显示记录
-    displayBrewingRecords();
-
-    // 温杯步骤交互
-    const filterPaper = document.querySelector('.filter-paper');
-    const filterCup = document.querySelector('.filter-cup');
-    const completionMessage = document.querySelector('.completion-message');
-    let isDragging = false;
-    let startX, startY, initialX, initialY;
-
-    // 拖拽开始
-    filterPaper.addEventListener('mousedown', function(e) {
-        isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        initialX = filterPaper.offsetLeft;
-        initialY = filterPaper.offsetTop;
-        filterPaper.style.cursor = 'grabbing';
-    });
-
-    // 拖拽过程
-    document.addEventListener('mousemove', function(e) {
-        if (!isDragging) return;
-
-        const deltaX = e.clientX - startX;
-        const deltaY = e.clientY - startY;
-
-        filterPaper.style.left = `${initialX + deltaX}px`;
-        filterPaper.style.top = `${initialY + deltaY}px`;
-    });
-
-    // 拖拽结束
-    document.addEventListener('mouseup', function() {
-        if (!isDragging) return;
-
-        isDragging = false;
-        filterPaper.style.cursor = 'move';
-
-        // 检查是否放入滤杯
-        const paperRect = filterPaper.getBoundingClientRect();
-        const cupRect = filterCup.getBoundingClientRect();
-
-        if (
-            paperRect.right > cupRect.left &&
-            paperRect.left < cupRect.right &&
-            paperRect.bottom > cupRect.top &&
-            paperRect.top < cupRect.bottom
-        ) {
-            // 放入成功
-            filterPaper.style.left = '50%';
-            filterPaper.style.top = '50%';
-            filterPaper.style.transform = 'translate(-50%, -50%)';
-            filterPaper.style.borderStyle = 'solid';
-            filterPaper.style.backgroundColor = 'rgba(111, 78, 55, 0.1)';
-
-            // 显示完成消息
-            completionMessage.classList.add('show');
-            setTimeout(() => {
-                completionMessage.classList.remove('show');
-            }, 2000);
-        } else {
-            // 放回原位
-            filterPaper.style.left = 'initial';
-            filterPaper.style.top = 'initial';
+    try {
+        // 初始化Canvas
+        canvas = document.getElementById('coffee-canvas');
+        if (!canvas) {
+            console.warn('Canvas element not found');
+            return;
         }
-    });
-
-    // 触摸设备支持
-    filterPaper.addEventListener('touchstart', function(e) {
-        isDragging = true;
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        initialX = filterPaper.offsetLeft;
-        initialY = filterPaper.offsetTop;
-        e.preventDefault();
-    });
-
-    document.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
-
-        const deltaX = e.touches[0].clientX - startX;
-        const deltaY = e.touches[0].clientY - startY;
-
-        filterPaper.style.left = `${initialX + deltaX}px`;
-        filterPaper.style.top = `${initialY + deltaY}px`;
-        e.preventDefault();
-    });
-
-    document.addEventListener('touchend', function() {
-        if (!isDragging) return;
-
-        isDragging = false;
-
-        const paperRect = filterPaper.getBoundingClientRect();
-        const cupRect = filterCup.getBoundingClientRect();
-
-        if (
-            paperRect.right > cupRect.left &&
-            paperRect.left < cupRect.right &&
-            paperRect.bottom > cupRect.top &&
-            paperRect.top < cupRect.bottom
-        ) {
-            filterPaper.style.left = '50%';
-            filterPaper.style.top = '50%';
-            filterPaper.style.transform = 'translate(-50%, -50%)';
-            filterPaper.style.borderStyle = 'solid';
-            filterPaper.style.backgroundColor = 'rgba(111, 78, 55, 0.1)';
-
-            completionMessage.classList.add('show');
-            setTimeout(() => {
-                completionMessage.classList.remove('show');
-            }, 2000);
-        } else {
-            filterPaper.style.left = 'initial';
-            filterPaper.style.top = 'initial';
+        ctx = canvas.getContext('2d');
+        if (!ctx) {
+            console.warn('Could not get canvas context');
+            return;
         }
-    });
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // 初始化参数控制
+        const paramControls = document.getElementById('param-controls');
+        if (paramControls) {
+            initParamControls();
+        } else {
+            console.warn('Parameter controls not found');
+        }
+        
+        // 初始化工具
+        const tools = document.getElementById('tools');
+        if (tools) {
+            initTools();
+        } else {
+            console.warn('Tools not found');
+        }
+        
+        // 显示第一步
+        const stepElement = document.querySelector('.step');
+        if (stepElement) {
+            showStep(1);
+        } else {
+            console.warn('Step element not found');
+        }
+
+        // 初始化冲泡记录
+        const recordsList = document.getElementById('records-list');
+        if (recordsList) {
+            displayBrewingRecords();
+        } else {
+            console.warn('Records list element not found');
+        }
+
+        // 添加页面加载时的动画效果
+        const firstStep = document.getElementById('step1');
+        if (firstStep) {
+            firstStep.style.opacity = '0';
+            firstStep.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                firstStep.style.transition = 'all 0.5s ease';
+                firstStep.style.opacity = '1';
+                firstStep.style.transform = 'translateY(0)';
+            }, 100);
+        } else {
+            console.warn('First step element not found');
+        }
+
+        // 温杯步骤交互
+        const filterPaper = document.querySelector('.filter-paper');
+        const filterCup = document.querySelector('.filter-cup');
+        const completionMessage = document.querySelector('.completion-message');
+
+        if (filterPaper && filterCup && completionMessage) {
+            let isDragging = false;
+            let startX, startY, initialX, initialY;
+
+            // 拖拽开始
+            filterPaper.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                initialX = filterPaper.offsetLeft;
+                initialY = filterPaper.offsetTop;
+                filterPaper.style.cursor = 'grabbing';
+            });
+
+            // 拖拽过程
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+
+                const deltaX = e.clientX - startX;
+                const deltaY = e.clientY - startY;
+
+                filterPaper.style.left = `${initialX + deltaX}px`;
+                filterPaper.style.top = `${initialY + deltaY}px`;
+            });
+
+            // 拖拽结束
+            document.addEventListener('mouseup', function() {
+                if (!isDragging) return;
+
+                isDragging = false;
+                filterPaper.style.cursor = 'move';
+
+                // 检查是否放入滤杯
+                const paperRect = filterPaper.getBoundingClientRect();
+                const cupRect = filterCup.getBoundingClientRect();
+
+                if (
+                    paperRect.right > cupRect.left &&
+                    paperRect.left < cupRect.right &&
+                    paperRect.bottom > cupRect.top &&
+                    paperRect.top < cupRect.bottom
+                ) {
+                    // 放入成功
+                    filterPaper.style.left = '50%';
+                    filterPaper.style.top = '50%';
+                    filterPaper.style.transform = 'translate(-50%, -50%)';
+                    filterPaper.style.borderStyle = 'solid';
+                    filterPaper.style.backgroundColor = 'rgba(111, 78, 55, 0.1)';
+
+                    // 显示完成消息
+                    completionMessage.classList.add('show');
+                    setTimeout(() => {
+                        completionMessage.classList.remove('show');
+                    }, 2000);
+                } else {
+                    // 放回原位
+                    filterPaper.style.left = 'initial';
+                    filterPaper.style.top = 'initial';
+                }
+            });
+
+            // 触摸设备支持
+            filterPaper.addEventListener('touchstart', function(e) {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                initialX = filterPaper.offsetLeft;
+                initialY = filterPaper.offsetTop;
+                e.preventDefault();
+            });
+
+            document.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+
+                const deltaX = e.touches[0].clientX - startX;
+                const deltaY = e.touches[0].clientY - startY;
+
+                filterPaper.style.left = `${initialX + deltaX}px`;
+                filterPaper.style.top = `${initialY + deltaY}px`;
+                e.preventDefault();
+            });
+
+            document.addEventListener('touchend', function() {
+                if (!isDragging) return;
+
+                isDragging = false;
+
+                const paperRect = filterPaper.getBoundingClientRect();
+                const cupRect = filterCup.getBoundingClientRect();
+
+                if (
+                    paperRect.right > cupRect.left &&
+                    paperRect.left < cupRect.right &&
+                    paperRect.bottom > cupRect.top &&
+                    paperRect.top < cupRect.bottom
+                ) {
+                    filterPaper.style.left = '50%';
+                    filterPaper.style.top = '50%';
+                    filterPaper.style.transform = 'translate(-50%, -50%)';
+                    filterPaper.style.borderStyle = 'solid';
+                    filterPaper.style.backgroundColor = 'rgba(111, 78, 55, 0.1)';
+
+                    completionMessage.classList.add('show');
+                    setTimeout(() => {
+                        completionMessage.classList.remove('show');
+                    }, 2000);
+                } else {
+                    filterPaper.style.left = 'initial';
+                    filterPaper.style.top = 'initial';
+                }
+            });
+        } else {
+            console.warn('Filter paper, cup or completion message elements not found');
+        }
+    } catch (error) {
+        console.error('初始化错误:', error);
+    }
 });
 
 // 调整Canvas大小
@@ -342,19 +394,6 @@ function restart() {
     document.querySelector('.weight-display').textContent = '0.0g';
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-// 添加页面加载时的动画效果
-document.addEventListener('DOMContentLoaded', () => {
-    const firstStep = document.getElementById('step1');
-    firstStep.style.opacity = '0';
-    firstStep.style.transform = 'translateY(20px)';
-    
-    setTimeout(() => {
-        firstStep.style.transition = 'all 0.5s ease';
-        firstStep.style.opacity = '1';
-        firstStep.style.transform = 'translateY(0)';
-    }, 100);
-});
 
 function saveBrewingRecord() {
     const record = {
@@ -617,11 +656,6 @@ function restart() {
     document.querySelector('.landing-page').style.display = 'block';
 }
 
-// 在页面加载时显示记录
-document.addEventListener('DOMContentLoaded', () => {
-    displayBrewingRecords();
-});
-
 // 冲泡参数保存
 function saveBrewingParams() {
     const params = {
@@ -634,120 +668,6 @@ function saveBrewingParams() {
     localStorage.setItem('brewingParams', JSON.stringify(params));
     alert('参数已保存！');
 }
-
-// 冲泡记录管理
-document.addEventListener('DOMContentLoaded', function() {
-    const recordForm = document.getElementById('record-form');
-    const recordsList = document.getElementById('records-list');
-
-    // 加载保存的记录
-    function loadRecords() {
-        const records = JSON.parse(localStorage.getItem('brewingRecords') || '[]');
-        recordsList.innerHTML = '';
-        
-        records.forEach((record, index) => {
-            const recordElement = document.createElement('div');
-            recordElement.className = 'record-item';
-            recordElement.innerHTML = `
-                <div class="record-params">
-                    <div>
-                        <strong>咖啡豆：</strong>
-                        <span>${record.coffeeType}</span>
-                    </div>
-                    <div>
-                        <strong>粉量：</strong>
-                        <span>${record.coffeeWeight}g</span>
-                    </div>
-                    <div>
-                        <strong>水量：</strong>
-                        <span>${record.waterWeight}g</span>
-                    </div>
-                    <div>
-                        <strong>水温：</strong>
-                        <span>${record.waterTemp}°C</span>
-                    </div>
-                    <div>
-                        <strong>时间：</strong>
-                        <span>${record.brewTime}秒</span>
-                    </div>
-                    <div>
-                        <strong>研磨度：</strong>
-                        <span>${record.grindSize}</span>
-                    </div>
-                </div>
-                <div class="record-notes">
-                    <p>${record.notes || '无备注'}</p>
-                </div>
-                <div class="record-actions">
-                    <button onclick="editRecord(${index})">
-                        <i class="fas fa-edit"></i>
-                        <span>编辑</span>
-                    </button>
-                    <button onclick="deleteRecord(${index})">
-                        <i class="fas fa-trash"></i>
-                        <span>删除</span>
-                    </button>
-                </div>
-            `;
-            recordsList.appendChild(recordElement);
-        });
-    }
-
-    // 保存新记录
-    recordForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const record = {
-            coffeeType: document.getElementById('coffee-type').value,
-            coffeeWeight: document.getElementById('coffee-weight').value,
-            waterWeight: document.getElementById('water-weight').value,
-            waterTemp: document.getElementById('water-temp').value,
-            brewTime: document.getElementById('brew-time').value,
-            grindSize: document.getElementById('grind-size').value,
-            notes: document.getElementById('notes').value,
-            date: new Date().toLocaleString()
-        };
-
-        const records = JSON.parse(localStorage.getItem('brewingRecords') || '[]');
-        records.push(record);
-        localStorage.setItem('brewingRecords', JSON.stringify(records));
-
-        loadRecords();
-        recordForm.reset();
-        alert('记录已保存！');
-    });
-
-    // 编辑记录
-    window.editRecord = function(index) {
-        const records = JSON.parse(localStorage.getItem('brewingRecords') || '[]');
-        const record = records[index];
-
-        document.getElementById('coffee-type').value = record.coffeeType;
-        document.getElementById('coffee-weight').value = record.coffeeWeight;
-        document.getElementById('water-weight').value = record.waterWeight;
-        document.getElementById('water-temp').value = record.waterTemp;
-        document.getElementById('brew-time').value = record.brewTime;
-        document.getElementById('grind-size').value = record.grindSize;
-        document.getElementById('notes').value = record.notes;
-
-        records.splice(index, 1);
-        localStorage.setItem('brewingRecords', JSON.stringify(records));
-        loadRecords();
-    };
-
-    // 删除记录
-    window.deleteRecord = function(index) {
-        if (confirm('确定要删除这条记录吗？')) {
-            const records = JSON.parse(localStorage.getItem('brewingRecords') || '[]');
-            records.splice(index, 1);
-            localStorage.setItem('brewingRecords', JSON.stringify(records));
-            loadRecords();
-        }
-    };
-
-    // 初始加载记录
-    loadRecords();
-});
 
 // 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
