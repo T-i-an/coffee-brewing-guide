@@ -42,7 +42,7 @@ async function sendMessageToBot() {
                 'Authorization': `Bearer ${CONFIG.DEEPSEEK_API_KEY}`
             },
             body: JSON.stringify({
-                model: "deepseek-chat",
+                model: "deepseek-ai/deepseek-chat-7b",
                 messages: [
                     {
                         role: "system",
