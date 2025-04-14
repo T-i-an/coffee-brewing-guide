@@ -1,6 +1,4 @@
-// DeepSeek API配置
-const DEEPSEEK_API_KEY = 'YOUR_API_KEY'; // 请替换为您的API密钥
-const API_URL = 'https://api.deepseek.com/v1/chat/completions';
+import CONFIG from './config.js';
 
 // DOM元素
 const chatButton = document.getElementById('chatButton');
@@ -37,26 +35,38 @@ async function sendMessageToBot() {
     const loadingMessage = addMessage('bot', '正在思考...');
 
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(CONFIG.API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+                'Authorization': `Bearer ${CONFIG.DEEPSEEK_API_KEY}`
             },
             body: JSON.stringify({
                 model: "deepseek-chat",
                 messages: [
                     {
                         role: "system",
-                        content: "你是一个专业的咖啡顾问，精通手冲咖啡的各种技巧和知识。请用简洁专业的语言回答用户的问题。"
+                        content: `你是一个专业的咖啡顾问，精通手冲咖啡的各种技巧和知识。
+                                你需要：
+                                1. 用简洁专业的语言回答用户的问题
+                                2. 针对手冲咖啡的具体问题提供详细建议
+                                3. 解释专业术语时要通俗易懂
+                                4. 提供实用的技巧和建议
+                                5. 遇到不确定的问题时，坦诚告知并建议咨询其他专业资源`
                     },
                     {
                         role: "user",
                         content: message
                     }
-                ]
+                ],
+                temperature: 0.7,
+                max_tokens: 1000
             })
         });
+
+        if (!response.ok) {
+            throw new Error('API请求失败');
+        }
 
         const data = await response.json();
         
@@ -67,12 +77,12 @@ async function sendMessageToBot() {
         if (data.choices && data.choices[0]) {
             addMessage('bot', data.choices[0].message.content);
         } else {
-            addMessage('bot', '抱歉，我现在无法回答这个问题。请稍后再试。');
+            throw new Error('无效的API响应');
         }
     } catch (error) {
         console.error('Error:', error);
         loadingMessage.remove();
-        addMessage('bot', '抱歉，发生了一些错误。请稍后再试。');
+        addMessage('bot', '抱歉，我暂时无法回答您的问题。请稍后再试或联系客服。');
     }
 }
 
